@@ -1,0 +1,63 @@
+version: 2
+
+sources:
+
+  - name: tutorial # name of the source 
+    schema: public # this is the schema our raw data lives in
+    database: dbt # this is the name of our database
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+
+    tables:
+      - name: superheroes 
+        loaded_at_field: created_at
+        description: >
+          Contains demographic information about each superhero
+
+      - name: users
+        loaded_at_field: created_at
+        description: >
+          contains users contact details. PK -- USER_ID
+          snapshot name -- users_snapshot (strategy -- timestamp)
+
+      - name: addresses        
+        description: >
+          contains users address details.PK -- ADDRESS_ID
+          snapshot name -- addresses_snapshot (strategy -- check)
+
+
+      - name: events
+        loaded_at_field: created_at
+        description: >
+          contains users event type and page url.PK-- EVENT_ID
+          No snapshot this table 
+      
+      - name: orders
+        loaded_at_field: created_at
+        description: >
+          contains users order details along with tracking with status. PK-- Order_ID and PROMO_ID
+          snapshot name -- orders_snapshot (strategy -- timestamp)
+        
+      - name: order_items        
+        description: >
+          contains users order quantity per products Primary Key-- Order_ID and PRODUCT_ID
+          No snapshot this table 
+      
+      - name: products
+        description: >
+          contains products details related to order items.PK -- PRODUCT_ID
+          snapshot name -- products_snapshot (strategy -- check)
+          
+
+      
+      - name: promos        
+        description: >
+          contains order promos. PK -- PROMO_ID
+          No snapshot this table 
