@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: int_users_standards
+    description: "intermedidate table for standardizing timestamps zones  for users created "
+    columns:
+    - name: user_id
+      tests:
+       - not_null 
+       - unique     
+    
+    - name: int_shipping_cost
+      description: >
+          intermedidate table for comparing cost for delivery and cost of the charges 
+
+
+    - name: int_product_order
+      description: >
+          intermedidate table for calculating frequently used products
+
+    - name: int_order_adjustments
+      description: >
+          intermedidate table to calculate the amount for chargeback 
+
+    - name: dim_users
+      description: >
+          dimesional table to relate users with products promo
+
+    - name: dim_high_shipping_orders
+      description: >
+          table to analyze why some of the cost of shipping higher than others       
+
+    - name: fct_orders
+      description: >
+          fact table comparing orders with products and users 
+    
+    - name: fct_shipping_service
+      description: >
+            fact table grouping delivery based on shipping service 
+
+      
+        
+          

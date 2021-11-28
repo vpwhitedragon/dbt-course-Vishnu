@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: int_promo_success 
+    description: "intermedidate table for promos and their status across the company"
+    columns:
+    - name: promo_id
+      tests:
+       - not_null 
+       
+  - name: dim_product_states
+    description: >
+        dimension table table to calculate frequent products sold in particular states analysis
+  
+  - name: dim_state_active_order
+    description: >
+        dimension table to identify table with active orders
+
+  - name: fct_user_order
+    description: >
+        fact table to merge user details with orders purchased by them 
+    

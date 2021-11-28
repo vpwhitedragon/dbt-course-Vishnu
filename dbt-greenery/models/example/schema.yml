@@ -15,42 +15,52 @@ models:
     #   tests :
     #   - positive_values 
 
-    - name: superheroes 
-      description: >
-          Contains demographic information about each superhero
-
-    - name: users
-      description: >
-          contains users contact details. PK -- USER_ID
+  - name: stg_users
+    description: >
+          contains users contact details. 
           snapshot name -- users_snapshot (strategy -- timestamp)
+    columns:
+      - name: user_id
+        tests:
+            - unique
+            - not_null
+            
+               
 
-    - name: addresses        
-      description: >
+
+      - name: stg_addresses        
+        description: >
           contains users address details.PK -- ADDRESS_ID
           snapshot name -- addresses_snapshot (strategy -- check)
 
 
-    - name: events    
-      description: >
+      - name: stg_events
+        loaded_at_field: created_at
+        description: >
           contains users event type and page url.PK-- EVENT_ID
           No snapshot this table 
-
-    - name: orders
-      description: >
+      
+      - name: stg_orders
+        loaded_at_field: created_at
+        description: >
           contains users order details along with tracking with status. PK-- Order_ID and PROMO_ID
           snapshot name -- orders_snapshot (strategy -- timestamp)
-
-    - name: order_items        
-      description: >
+        
+      - name: stg_order_items        
+        description: >
           contains users order quantity per products Primary Key-- Order_ID and PRODUCT_ID
           No snapshot this table 
-
-    - name: products
-      description: >
+      
+      - name: stg_products
+        description: >
           contains products details related to order items.PK -- PRODUCT_ID
           snapshot name -- products_snapshot (strategy -- check)
-    
-    - name: promos        
-      description: >
+                
+      - name: stg_promos        
+        description: >
           contains order promos. PK -- PROMO_ID
-          No snapshot this table 
+          No snapshot this table
+
+      - name: stg_shipments
+        description: >
+          contains order shipment status
