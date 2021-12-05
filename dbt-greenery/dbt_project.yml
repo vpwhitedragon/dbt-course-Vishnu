@@ -36,3 +36,10 @@ models:
     # Config indicated by + and applies to all files under models/example/
     example:
       +materialized: view
+    post-hook:
+      -"{{grant(role='reporting')}}"
+
+    on-run-end:    
+      -  " GRANT SELECT ON {{ this }} TO ROLE {{ role }}"
+
+  

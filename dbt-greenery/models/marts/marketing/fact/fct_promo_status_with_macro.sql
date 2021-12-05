@@ -16,3 +16,5 @@ FROM
 {{ref("fct_promo_status")}} 
 
 
+
+
