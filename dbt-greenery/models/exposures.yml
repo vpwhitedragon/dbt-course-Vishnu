@@ -1,0 +1,19 @@
+version: 2 
+
+exposures:
+
+  - name: funnel_analsysis
+    description: >
+        Models that are critical to our product funnel dashboard
+    type: dashboard
+    maturity: high
+    owner:
+      name: Vishnu
+      email: vpkr276@gmail.com
+    depends_on:
+      - ref('fct_funnel_analysis_detailed')
+      - ref('stg_events')
+      
+
+
+      
