@@ -50,25 +50,34 @@ stage_3 as (
 
 
 select
-    CNT,stage,event_type, 0 as Drop_percent from 
+    CNT,stage,event_type, 0 as Dropped_Sessions ,
+    0 as Dropped_Sessions_rate
+    from 
     stage_0
 UNIon ALL
 select
-    stage_1.CNT,stage_1.stage,stage_1.event_type, (stage_0.CNT -stage_1.CNT) as Drop_percent from 
+    stage_1.CNT,stage_1.stage,stage_1.event_type, (stage_0.CNT -stage_1.CNT) as Dropped_Sessions ,
+    (cast(stage_0.CNT as float) - cast(stage_1.CNT as float))/cast(stage_0.CNT as float)*100 as Dropped_Sessions_rate
+    from 
     stage_1,
     stage_0
     where 
     stage_0.Key_col=stage_1.Key_col
     UNIon ALL
 select
-    stage_2.CNT,stage_2.stage,stage_2.event_type, (stage_1.CNT -stage_2.CNT) as Drop_percent from 
+    stage_2.CNT,stage_2.stage,stage_2.event_type, 
+    (cast(stage_1.CNT as float) -cast(stage_2.CNT as float)) as Dropped_Sessions,
+    (cast(stage_1.CNT as float) -cast(stage_2.CNT as float))/cast(stage_1.CNT as float)*100 as Dropped_Sessions_rate
+     from 
     stage_2,
     stage_1
     where
     stage_1.Key_col=stage_2.Key_col
 UNIon ALL
 select
-    stage_3.CNT,stage_3.stage,stage_3.event_type, (stage_2.CNT -stage_3.CNT) as Drop_percent from 
+    stage_3.CNT,stage_3.stage,stage_3.event_type, (stage_2.CNT -stage_3.CNT) as Dropped_Sessions,
+    (cast(stage_2.CNT as float) -cast(stage_3.CNT as float))/cast(stage_2.CNT as float)*100 as Dropped_Sessions_rate
+     from 
     stage_3,
     stage_2
     where
