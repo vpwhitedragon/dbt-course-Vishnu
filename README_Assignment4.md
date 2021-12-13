@@ -1,7 +1,8 @@
 1.Modelling Challenge 
 SQL user : fct_funnel_analysis_detailed.sql
 
-![image](https://user-images.githubusercontent.com/22128038/145730670-cf66c70e-850d-4511-bad1-053aea741f33.png)
+![image](https://user-images.githubusercontent.com/22128038/145850909-41c182a9-2199-4d12-8e1d-1df16e33231f.png)
+
 
 2) Exposure 
 
